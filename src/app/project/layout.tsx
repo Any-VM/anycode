@@ -15,7 +15,7 @@ export default function ProjectLayout({
             <UploadCloud className="h-5 w-5 mr-2" /> Deploy
           </Button>
           <Button variant="ghost" className="px-4 py-2 text-left justify-start">
-            <Route className="h-5 w-5 mr-2" /> Paths
+            <Route className="h-5 w-5 mr-2" /> Edit Worker
           </Button>
         </div>
       </div>
