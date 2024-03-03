@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Route, UploadCloud } from "lucide-react";
+import { Info, Route, UploadCloud, Wrench } from "lucide-react";
 
 export default function ProjectLayout({
   children,
@@ -11,11 +11,17 @@ export default function ProjectLayout({
           <h1 className="px-4 pt-4 pb-2 text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Project
           </h1>
+          <Button variant="ghost" className="px-4 py-2 text-left justify-start bg-secondary">
+            <Info className="h-5 w-5 mr-2" /> Info
+          </Button>
           <Button variant="ghost" className="px-4 py-2 text-left justify-start">
             <UploadCloud className="h-5 w-5 mr-2" /> Deploy
           </Button>
           <Button variant="ghost" className="px-4 py-2 text-left justify-start">
             <Route className="h-5 w-5 mr-2" /> Edit Worker
+          </Button>
+          <Button variant="ghost" className="px-4 py-2 text-left justify-start">
+            <Wrench className="h-5 w-5 mr-2" /> Config
           </Button>
         </div>
       </div>
