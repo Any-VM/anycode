@@ -12,37 +12,31 @@ export default function SignOut() {
     redirect("/auth/login");
   }
   return (
-    <main className="from-background min-h-screen bg-gradient-to-br to-slate-300 bg-fixed dark:to-slate-800">
-      <section className="flex min-h-screen items-center justify-center">
-        <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
-          <CardTitle className="mx-auto mb-2 flex flex-col items-center justify-center">
-            Logout
-          </CardTitle>
-          <CardHeader>
-            <p className="text-center text-sm">
-              Are you sure you want to logout?
-            </p>
-          </CardHeader>
-          <CardContent>
-            <Button
-              className="w-full"
-              onClick={async () => {
-                const data = await signOut({
-                  callbackUrl: "/auth/login",
-                  redirect: false,
-                });
-                toast({
-                  title: "Logged out",
-                  description: "You have been logged out",
-                });
-                router.push(data.url);
-              }}
-            >
-              Logout
-            </Button>
-          </CardContent>
-        </Card>
-      </section>
-    </main>
+    <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
+      <CardTitle className="mx-auto mb-2 flex flex-col items-center justify-center">
+        Logout
+      </CardTitle>
+      <CardHeader>
+        <p className="text-center text-sm">Are you sure you want to logout?</p>
+      </CardHeader>
+      <CardContent>
+        <Button
+          className="w-full"
+          onClick={async () => {
+            const data = await signOut({
+              callbackUrl: "/auth/login",
+              redirect: false,
+            });
+            toast({
+              title: "Logged out",
+              description: "You have been logged out",
+            });
+            router.push(data.url);
+          }}
+        >
+          Logout
+        </Button>
+      </CardContent>
+    </Card>
   );
 }

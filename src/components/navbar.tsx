@@ -107,30 +107,31 @@ export default function Navbar() {
         <Slash className="h-5 w-5 -rotate-[18deg] text-slate-400" />
         <div className="text-lg font-semibold">Worker 1</div>
       </div>
-      <div className="">
+      <div className="flex space-x-4">
         <ModeToggle />
+
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar>
+              <AvatarImage src="https://github.com/proudparrot2.png" />
+              <AvatarFallback>P</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="mr-4 mt-4 w-48">
+            <DropdownMenuLabel>
+              <p>proudparrot2</p>
+              <p className="text-xs font-light text-gray-300">
+                hi@proudparrot2.tech
+              </p>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Avatar>
-            <AvatarImage src="https://github.com/proudparrot2.png" />
-            <AvatarFallback>P</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="mr-4 mt-4 w-48">
-          <DropdownMenuLabel>
-            <p>proudparrot2</p>
-            <p className="text-xs font-light text-gray-300">
-              hi@proudparrot2.tech
-            </p>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </div>
   );
 }

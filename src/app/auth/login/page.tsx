@@ -30,49 +30,45 @@ export default function Login() {
     redirect("/");
   }
   return (
-    <main className="from-background min-h-screen bg-gradient-to-br to-slate-300 bg-fixed dark:to-slate-800">
-      <section className="flex min-h-screen items-center justify-center">
-        <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
-          <CardTitle className="mb-4 text-left text-2xl font-bold">
-            Login to AnyCode
-          </CardTitle>
-          <CardContent className="m-2 w-full">
-            <Label htmlFor="emailinput">Email</Label>
-            <Input
-              placeholder="johndoe@example.com"
-              id="emailinput"
-              ref={emailInputRef}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  signIn("email", { email: emailInputRef.current?.value });
-                }
-              }}
-            />
-            <div className="mx-auto mt-4 flex w-full flex-col items-center justify-center gap-2">
-              <Button
-                className="my-1 w-full"
-                onClick={() =>
-                  signIn("email", { email: emailInputRef.current?.value })
-                }
-              >
-                Login or Sign up with Email
-              </Button>
-              <p className="text-center text-sm">Or login or sign up with</p>
-              {signinProviders.map((provider) => (
-                <Button
-                  key={provider.name}
-                  variant="secondary"
-                  className="my-1 w-full"
-                  onClick={provider.signin}
-                >
-                  {provider.icon}
-                  {provider.name}
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-    </main>
+    <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
+      <CardTitle className="mb-4 text-left text-2xl font-bold">
+        Login to AnyCode
+      </CardTitle>
+      <CardContent className="m-2 w-full">
+        <Label htmlFor="emailinput">Email</Label>
+        <Input
+          placeholder="johndoe@example.com"
+          id="emailinput"
+          ref={emailInputRef}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              signIn("email", { email: emailInputRef.current?.value });
+            }
+          }}
+        />
+        <div className="mx-auto mt-4 flex w-full flex-col items-center justify-center gap-2">
+          <Button
+            className="my-1 w-full"
+            onClick={() =>
+              signIn("email", { email: emailInputRef.current?.value })
+            }
+          >
+            Login or Sign up with Email
+          </Button>
+          <p className="text-center text-sm">Or login or sign up with</p>
+          {signinProviders.map((provider) => (
+            <Button
+              key={provider.name}
+              variant="secondary"
+              className="my-1 w-full"
+              onClick={provider.signin}
+            >
+              {provider.icon}
+              {provider.name}
+            </Button>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

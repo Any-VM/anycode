@@ -10,6 +10,7 @@ export const authConfig: NextAuthOptions = {
     signIn: "/auth/login",
     verifyRequest: "/auth/verify",
     signOut: "/auth/logout",
+    error: "/auth/error",
   },
   providers: [
     EmailProvider({

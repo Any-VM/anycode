@@ -23,12 +23,14 @@ export default async function RootLayout({
   if (!session && !headers().get("x-pathname")?.startsWith("/auth")) {
     redirect("/auth/login");
   }
+  const shouldDisplayNavbar =
+    !headers().get("x-pathname")?.startsWith("/auth") && session;
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <Session session={session}>
           <Themes>
-            {session && <Navbar />}
+            {shouldDisplayNavbar && <Navbar />}
             <Toaster />
             {children}
           </Themes>
