@@ -4,8 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, build the server using pnpm 
 
 ```Linux
-$npm install -g pnpm
-$pnpm install
+$ npm install -g pnpm
+$ pnpm install
 ```
 
 Then, run the development server:
