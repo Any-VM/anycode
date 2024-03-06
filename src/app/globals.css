@@ -56,12 +56,3 @@
     @apply bg-background text-foreground;
   }
 }
-.shiki {
-  @apply h-[48rem] overflow-scroll rounded-lg px-3 pb-5;
-}
-.shiki span {
-  @apply !font-mono  font-[--shiki-dark-font-weight] text-[--shiki-dark];
-  color: var(--shiki-dark) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
