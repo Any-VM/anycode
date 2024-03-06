@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { Cloud, Slash, Check, ChevronsUpDown } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -24,29 +25,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { ModeToggle } from "./ThemeSwitch";
 
 const projects = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "1",
+    label: "my-project",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "2",
+    label: "my-other-project",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "3",
+    label: "my-third-project",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "4",
+    label: "my-fourth-project",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "5",
+    label: "my-fifth-project",
   },
 ];
 
@@ -55,17 +57,19 @@ export default function Navbar() {
   const [value, setValue] = useState("");
 
   return (
-    <div className="min-w-screen border-b h-16 flex items-center justify-between px-6">
+    <div className="min-w-screen flex h-16 items-center justify-between border-b px-6">
       <div className="flex items-center gap-4">
-        <Cloud className="h-7 w-7 text-blue-400 fill-blue-400" />
-        <Slash className="text-gray-400 -rotate-[18deg] h-5 w-5" />
+        <Link href="/">
+          <Cloud className="h-7 w-7 fill-blue-400 text-blue-400" />
+        </Link>
+        <Slash className="h-5 w-5 -rotate-[18deg] text-slate-400" />
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="w-[200px] justify-between"
+              className="w-56 justify-between"
             >
               {value
                 ? projects.find((project) => project.value === value)?.label
@@ -73,7 +77,7 @@ export default function Navbar() {
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0">
+          <PopoverContent className="w-56 p-0">
             <Command>
               <CommandInput placeholder="Search projects..." />
               <CommandEmpty>No project found.</CommandEmpty>
@@ -90,7 +94,7 @@ export default function Navbar() {
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value === project.value ? "opacity-100" : "opacity-0"
+                        value === project.value ? "opacity-100" : "opacity-0",
                       )}
                     />
                     {project.label}
@@ -100,6 +104,11 @@ export default function Navbar() {
             </Command>
           </PopoverContent>
         </Popover>
+        <Slash className="h-5 w-5 -rotate-[18deg] text-slate-400" />
+        <div className="text-lg font-semibold">Worker 1</div>
+      </div>
+      <div className="">
+        <ModeToggle />
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -111,7 +120,7 @@ export default function Navbar() {
         <DropdownMenuContent className="mr-4 mt-4 w-48">
           <DropdownMenuLabel>
             <p>proudparrot2</p>
-            <p className="text-xs text-gray-300 font-light">
+            <p className="text-xs font-light text-gray-300">
               hi@proudparrot2.tech
             </p>
           </DropdownMenuLabel>
