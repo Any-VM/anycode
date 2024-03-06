@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { FormEventHandler, useRef } from "react";
 import { redirect } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { Card, CardTitle, CardContent } from "@/components/ui/card";
@@ -11,20 +11,19 @@ import { Separator } from "@/components/ui/separator";
 export default function Login() {
   const { data: session } = useSession();
   const emailInputRef = useRef<HTMLInputElement>(null);
-  const iconClasses = "h-6 w-6";
   const signinProviders: {
     name: string;
     icon: JSX.Element;
     signin: () => void;
   }[] = [
     {
-      name: "github",
-      icon: <GitHub className={iconClasses} />,
+      name: "Github",
+      icon: <GitHub className="mr-2 h-6 w-6" />,
       signin: () => signIn("github"),
     },
     {
-      name: "discord",
-      icon: <Discord className={iconClasses} />,
+      name: "Discord",
+      icon: <Discord className="mr-2 h-6 w-6" />,
       signin: () => signIn("discord"),
     },
   ];
@@ -34,7 +33,7 @@ export default function Login() {
   return (
     <main className="from-background min-h-screen bg-gradient-to-br to-slate-300 bg-fixed dark:to-slate-800">
       <section className="flex min-h-screen items-center justify-center">
-        <Card className="mx-auto flex h-96 w-96 flex-col items-center justify-center">
+        <Card className="mx-auto flex h-[32rem] w-[32rem] flex-col items-center justify-center">
           <CardTitle className="mb-4 text-left text-2xl font-bold">
             Login to AnyCode
           </CardTitle>
@@ -44,6 +43,11 @@ export default function Login() {
               placeholder="johndoe@example.com"
               id="emailinput"
               ref={emailInputRef}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  signIn("email", { email: emailInputRef.current?.value });
+                }
+              }}
             />
             <div className="mt-4 w-full justify-center gap-2">
               <Button
@@ -66,11 +70,12 @@ export default function Login() {
                 {signinProviders.map((provider) => (
                   <Button
                     key={provider.name}
-                    className="mr-2 h-12 w-12"
+                    className="mr-2 h-12 w-32"
                     variant="secondary"
                     onClick={provider.signin}
                   >
                     {provider.icon}
+                    {provider.name}
                   </Button>
                 ))}
               </section>
