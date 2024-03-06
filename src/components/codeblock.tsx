@@ -8,7 +8,7 @@ const CodeBlock = ({
 }) => (
   <div
     className={cn(
-      "text-muted-foreground overflow-scroll rounded-lg border bg-slate-50 font-mono dark:bg-slate-900 ",
+      "text-muted-foreground bg-muted overflow-scroll rounded-lg border font-mono",
       className,
     )}
   >

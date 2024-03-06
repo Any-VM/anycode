@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth/next";
 import { authConfig } from "@/app/api/auth/[...nextauth]/config";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "Anycode",
   description: "A seamless platform for serverless workers",
@@ -28,6 +29,7 @@ export default async function RootLayout({
         <Session session={session}>
           <Themes>
             {session && <Navbar />}
+            <Toaster />
             {children}
           </Themes>
         </Session>

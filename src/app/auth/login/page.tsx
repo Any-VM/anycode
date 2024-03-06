@@ -55,13 +55,9 @@ export default function Login() {
                   signIn("email", { email: emailInputRef.current?.value })
                 }
               >
-                Login
+                Login or Sign up with Email
               </Button>
-
-              <Button className="my-1 w-full" variant="outline">
-                Sign Up
-              </Button>
-              <p className="text-center text-sm">Or sign in with</p>
+              <p className="text-center text-sm">Or login or sign up with</p>
               {signinProviders.map((provider) => (
                 <Button
                   key={provider.name}
