@@ -23,15 +23,12 @@ export default function SignOut() {
         <Button
           className="w-full"
           onClick={async () => {
-            const data = await signOut({
-              callbackUrl: "/auth/login",
-              redirect: false,
-            });
+            await signOut();
             toast({
               title: "Logged out",
               description: "You have been logged out",
             });
-            router.push(data.url);
+            router.push("/auth/login");
           }}
         >
           Logout

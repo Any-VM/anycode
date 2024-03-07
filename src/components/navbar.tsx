@@ -129,6 +129,11 @@ export default function Navbar() {
             <DropdownMenuItem>Billing</DropdownMenuItem>
             <DropdownMenuItem>Team</DropdownMenuItem>
             <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/auth/logout" prefetch={false}>
+                Log Out
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

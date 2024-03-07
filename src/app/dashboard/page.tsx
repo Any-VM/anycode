@@ -29,7 +29,7 @@ export default function Home() {
                 <CardFooter className="flex items-center justify-between">
                   <div className="text-foreground flex items-center gap-2">
                     <span
-                      className={`rounded-full text-lg ${offlineWorkers.includes(workerNumber) ? "text-red-400" : "text-green-400"}`}
+                      className={`rounded-full text-lg  ${offlineWorkers.includes(workerNumber) ? "text-red-400" : "text-green-400"}`}
                     >
                       &#9679;
                     </span>

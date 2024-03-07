@@ -1,19 +1,50 @@
 "use client";
-import { useRef } from "react";
+import { useState } from "react";
+import { z, ZodError } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { redirect, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { useToast } from "@/components/ui/use-toast";
 import { Card, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { GitHub, Discord } from "@/components/icons";
-import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
 export default function Login() {
   const { data: session } = useSession();
-  const { toast } = useToast();
   const searchParams = useSearchParams();
+  const Spinner = () => <Loader2 className="mr-2 h-5 w-5 animate-spin" />;
+  const [loading, setLoading] = useState(false);
   const error = searchParams.get("error");
-  const emailInputRef = useRef<HTMLInputElement>(null);
+  const emailWithoutPlusValidator = (value: string) => {
+    if (value.includes("+")) {
+      throw new ZodError([]);
+    }
+    return value;
+  };
+
+  const formSchema = z.object({
+    email: z.string().email().refine(emailWithoutPlusValidator, {
+      message: "Email cannot contain the '+' character.",
+    }),
+  });
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+  function onFormSubmit(data: z.infer<typeof formSchema>) {
+    signIn("email", { email: data.email });
+  }
   const signinProviders: {
     name: string;
     icon: JSX.Element;
@@ -33,18 +64,6 @@ export default function Login() {
   if (session) {
     redirect("/");
   }
-  function handleEmailSignIn() {
-    const emailUser = emailInputRef.current?.value.split("@")[0];
-    // TODO: Validate emails server side
-    if (emailUser?.includes("+")) {
-      toast({
-        title: "Invalid or unusuable Email",
-        description: "Please use a valid email address",
-      });
-      return;
-    }
-    signIn("email", { email: emailInputRef.current?.value });
-  }
   return (
     <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
       <CardTitle className="mb-4 text-left text-2xl font-bold">
@@ -56,30 +75,39 @@ export default function Login() {
             There was an error: {error}
           </div>
         )}
-        <Label htmlFor="emailinput">Email</Label>
-        <Input
-          placeholder="johndoe@example.com"
-          id="emailinput"
-          ref={emailInputRef}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleEmailSignIn();
-            }
-          }}
-        />
         <div className="mx-auto mt-4 flex w-full flex-col items-center justify-center gap-2">
-          <Button className="my-1 w-full" onClick={handleEmailSignIn}>
-            Login or Sign up with Email
-          </Button>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onFormSubmit)} className="w-full">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="johndoe@example.com" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="my-2 w-full" type="submit">
+                Login or Sign up with Email
+              </Button>
+            </form>
+          </Form>
           <p className="text-center text-sm">Or login or sign up with</p>
           {signinProviders.map((provider) => (
             <Button
               key={provider.name}
               variant="secondary"
               className="my-1 w-full"
-              onClick={provider.signin}
+              onClick={() => {
+                setLoading(true);
+                provider.signin();
+              }}
             >
-              {provider.icon}
+              {loading ? <Spinner /> : provider.icon}
               {provider.name}
             </Button>
           ))}
