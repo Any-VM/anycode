@@ -65,7 +65,7 @@ export default function Login() {
     redirect("/");
   }
   return (
-    <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
+    <Card className="mx-auto flex h-[28rem] w-96 flex-col items-center justify-center">
       <CardTitle className="mb-4 text-left text-2xl font-bold">
         Login to AnyCode
       </CardTitle>

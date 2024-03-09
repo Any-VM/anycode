@@ -9,7 +9,7 @@ export default async function EmailVerify() {
     redirect("/");
   }
   return (
-    <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
+    <Card className="mx-auto flex h-[28rem] w-96 flex-col items-center justify-center">
       <CardTitle className="mx-auto mb-2 flex flex-col items-center justify-center">
         <Mail className="h-12 w-12" />
         Verify your email

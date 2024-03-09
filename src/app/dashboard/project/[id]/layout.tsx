@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Info, Route, UploadCloud, Wrench } from "lucide-react";
-
 export default function ProjectLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

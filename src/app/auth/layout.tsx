@@ -3,7 +3,7 @@ export default function LoginLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="from-background to-muted min-h-screen bg-gradient-to-br">
+    <main className="from-background to-muted min-h-screen bg-gradient-to-b">
       <section className="flex min-h-screen items-center justify-center">
         {children}
       </section>

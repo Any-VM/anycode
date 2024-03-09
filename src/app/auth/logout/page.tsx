@@ -12,7 +12,7 @@ export default function SignOut() {
     redirect("/auth/login");
   }
   return (
-    <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
+    <Card className="mx-auto flex h-[28rem] w-96 flex-col items-center justify-center">
       <CardTitle className="mx-auto mb-2 flex flex-col items-center justify-center">
         Logout
       </CardTitle>

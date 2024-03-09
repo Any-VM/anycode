@@ -7,7 +7,7 @@ export default function AuthError() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
   return (
-    <Card className="mx-auto flex h-[32rem] w-96 flex-col items-center justify-center">
+    <Card className="mx-auto flex h-[28rem] w-96 flex-col items-center justify-center">
       <CardTitle className="mx-auto mb-2 flex flex-col items-center justify-center">
         <ShieldX className="h-12 w-12" />
         There was an error logging in

@@ -52,7 +52,15 @@ const projects = [
   },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  avatar,
+  email,
+  name,
+}: {
+  avatar: string | null | undefined;
+  email: string | null | undefined;
+  name: string | null | undefined;
+}) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -113,15 +121,17 @@ export default function Navbar() {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src="https://github.com/proudparrot2.png" />
-              <AvatarFallback>P</AvatarFallback>
+              <AvatarImage src={avatar || ""} />
+              <AvatarFallback>
+                {name ? name?.charAt(0) : email?.charAt(0)}
+              </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mr-4 mt-4 w-48">
             <DropdownMenuLabel>
-              <p>proudparrot2</p>
-              <p className="text-xs font-light text-gray-300">
-                hi@proudparrot2.tech
+              <p>{name || email}</p>
+              <p className="text-muted-foreground text-xs font-light">
+                {name ? email : name}
               </p>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -130,9 +140,7 @@ export default function Navbar() {
             <DropdownMenuItem>Team</DropdownMenuItem>
             <DropdownMenuItem>Subscription</DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/auth/logout" prefetch={false}>
-                Log Out
-              </Link>
+              <Link href="/auth/logout">Log Out</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
