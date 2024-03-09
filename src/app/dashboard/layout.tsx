@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authConfig } from "../api/auth/[...nextauth]/config";
