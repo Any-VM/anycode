@@ -12,11 +12,7 @@ export default async function DashboardLayout({
   }
   return (
     <main>
-      <Navbar
-        avatar={session.user?.image}
-        email={session.user?.email}
-        name={session.user?.name}
-      />
+      <Navbar />
       {children}
     </main>
   );

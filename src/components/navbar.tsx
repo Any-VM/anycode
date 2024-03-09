@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { Cloud, Slash, Check, ChevronsUpDown } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -52,17 +53,11 @@ const projects = [
   },
 ];
 
-export default function Navbar({
-  avatar,
-  email,
-  name,
-}: {
-  avatar: string | null | undefined;
-  email: string | null | undefined;
-  name: string | null | undefined;
-}) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const { data: session } = useSession();
+  const { name, email, image: avatar } = session?.user || {};
 
   return (
     <div className="min-w-screen flex h-16 items-center justify-between border-b px-6">
