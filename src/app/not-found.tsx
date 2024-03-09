@@ -23,9 +23,6 @@ export default async function notFound({
     return (
       <main>
         <Navbar
-          avatar={session.user?.image}
-          email={session.user?.email}
-          name={session.user?.name}
         />
         {children}
   
