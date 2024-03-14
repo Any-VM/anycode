@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
-import { Session } from "next-auth";
+import { Session as AuthSession } from "next-auth";
 
 export function Themes({ children }: { children: React.ReactNode }) {
   return <ThemeProvider attribute="class">{children}</ThemeProvider>;
@@ -13,7 +13,7 @@ export function Session({
   session,
 }: {
   children: React.ReactNode;
-  session: Session | null;
+  session: AuthSession | null;
 }) {
   return <SessionProvider session={session}>{children}</SessionProvider>;
 }

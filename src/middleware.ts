@@ -1,9 +1,3 @@
-// TODO: Do an actual homepage
-import { NextResponse, NextRequest } from "next/server";
-
-export function middleware(req: NextRequest) {
-  return NextResponse.redirect(new URL("/dashboard", req.url));
-}
-export const config = {
-  matcher: "/",
-};
+import authConfig from "@/app/api/auth/[...nextauth]/auth.config";
+import NextAuth from "next-auth";
+export const { auth: middleware } = NextAuth(authConfig);

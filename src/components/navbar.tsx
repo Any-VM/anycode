@@ -57,7 +57,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const { data: session } = useSession();
-  const { name, email, image: avatar } = session?.user || {};
+  const { name, email, image } = session?.user || {};
 
   return (
     <div className="min-w-screen flex h-16 items-center justify-between border-b px-6">
@@ -116,7 +116,7 @@ export default function Navbar() {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src={avatar || ""} />
+              <AvatarImage src={image || ""} />
               <AvatarFallback>
                 {name ? name?.charAt(0) : email?.charAt(0)}
               </AvatarFallback>

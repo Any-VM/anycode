@@ -3,8 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { Themes, Session } from "@/app/providers";
 import { GeistMono } from "geist/font/mono";
-import { getServerSession } from "next-auth/next";
-import { authConfig } from "@/app/api/auth/[...nextauth]/config";
+import { auth } from "@/app/api/auth/[...nextauth]/route";
 import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "Anycode",
@@ -15,7 +14,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authConfig);
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>

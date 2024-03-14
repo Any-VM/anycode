@@ -15,10 +15,7 @@ export default function Home() {
       <div className="flex flex-wrap gap-4">
         {projects.map((workerNumber) => {
           return (
-            <Link
-              href={`/dashboard/project/${workerNumber}`}
-              key={workerNumber}
-            >
+            <Link href={`/project/${workerNumber}`} key={workerNumber}>
               <Card
                 key={workerNumber}
                 className="w-72 cursor-pointer duration-100 hover:border-slate-700"
