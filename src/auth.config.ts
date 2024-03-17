@@ -16,11 +16,11 @@ const config: NextAuthOptions = {
           id,
         },
       });
-      if (!userExists) {
+      if (!userExists && id && email) {
         await prisma.user.create({
           data: {
-            email: email!, // if no email then why would there be a user
-            id: id!, // why would there NOT be a user id
+            email,
+            id,
             name,
           },
         });
