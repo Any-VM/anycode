@@ -1,3 +1,7 @@
-import authConfig from "@/app/api/auth/[...nextauth]/auth.config";
-import NextAuth from "next-auth";
-export const { auth: middleware } = NextAuth(authConfig);
+import { withAuth } from "next-auth/middleware";
+import config from "@/auth.config";
+export default withAuth({
+  pages: {
+    ...config.pages,
+  },
+});

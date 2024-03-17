@@ -1,6 +1,13 @@
+import { redirect } from "next/navigation";
 import { Card, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { getServerSession } from "next-auth";
+import config from "@/auth.config";
 import { Mail } from "lucide-react";
 export default async function EmailVerify() {
+  const session = await getServerSession(config);
+  if (session) {
+    redirect("/");
+  }
   return (
     <Card className="mx-auto flex h-[28rem] w-96 flex-col items-center justify-center">
       <CardTitle className="mx-auto mb-2 flex flex-col items-center justify-center">
